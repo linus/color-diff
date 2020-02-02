@@ -29,65 +29,54 @@
 /**
  * IMPORTS
  */
-var assert        = require('assert');
-var color_convert = require('../lib/convert');
+const assert = require("assert");
+const color_convert = require("../lib/convert");
 
 /**
  * TESTS
  */
 
-describe('convert', function(){
-  describe('#rgb_to_lab()', function(){
-    it('should convert to expected lab color #1', function(){
-      assert.deepEqual({'L' : 40.473, 'a' : -6.106, 'b' : -21.417},
-                       round_all(color_convert.rgb_to_lab({'R' : 55,
-                                                           'G' : 100,
-                                                           'B' : 130})));
+describe("convert", () => {
+  describe("#rgb_to_lab()", () => {
+    it("should convert to expected lab color #1", () => {
+      assert.deepEqual(
+        {L: 40.473, a: -6.106, b: -21.417},
+        round_all(color_convert.rgb_to_lab({R: 55, G: 100, B: 130}))
+      );
     });
-    it('should convert to expected lab color #2', function(){
-      assert.deepEqual({'L' : 0, 'a' : 0, 'b' : 0},
-                       round_all(color_convert.rgb_to_lab({'R' : 0,
-                                                           'G' : 0,
-                                                           'B' : 0})));
+    it("should convert to expected lab color #2", () => {
+      assert.deepEqual({L: 0, a: 0, b: 0}, round_all(color_convert.rgb_to_lab({R: 0, G: 0, B: 0})));
     });
-    it('should convert to expected lab color #3', function(){
-      assert.deepEqual({'L' : 100, 'a' : 0.005, 'b' : -0.010},
-                       round_all(color_convert.rgb_to_lab({'R' : 255,
-                                                           'G' : 255,
-                                                           'B' : 255})));
+    it("should convert to expected lab color #3", () => {
+      assert.deepEqual({L: 100, a: 0.005, b: -0.01}, round_all(color_convert.rgb_to_lab({R: 255, G: 255, B: 255})));
     });
-    it('should convert to expected lab color #4', function(){
-      assert.deepEqual({'L' : 100, 'a' : 0.005, 'b' : -0.010},
-                       round_all(color_convert.rgba_to_lab({'R' : 255,
-                                                            'G' : 255,
-                                                            'B' : 255,
-                                                            'A' : 1.0})));
+    it("should convert to expected lab color #4", () => {
+      assert.deepEqual(
+        {L: 100, a: 0.005, b: -0.01},
+        round_all(color_convert.rgba_to_lab({R: 255, G: 255, B: 255, A: 1.0}))
+      );
     });
-    it('should convert to expected lab color #5', function(){
-      assert.deepEqual({'L' : 100, 'a' : 0.005, 'b' : -0.010},
-                       round_all(color_convert.rgba_to_lab({'R' : 0,
-                                                            'G' : 0,
-                                                            'B' : 0,
-                                                            'A' : 0.0})));
+    it("should convert to expected lab color #5", () => {
+      assert.deepEqual({L: 100, a: 0.005, b: -0.01}, round_all(color_convert.rgba_to_lab({R: 0, G: 0, B: 0, A: 0.0})));
     });
-    it('should convert to expected lab color #6', function(){
-      assert.deepEqual({"L": 53.389, "a": 0.003, "b": -0.006},
-                       round_all(color_convert.rgba_to_lab({'R' : 0,
-                                                            'G' : 0,
-                                                            'B' : 0,
-                                                            'A' : 0.5})));
+    it("should convert to expected lab color #6", () => {
+      assert.deepEqual(
+        {L: 53.389, a: 0.003, b: -0.006},
+        round_all(color_convert.rgba_to_lab({R: 0, G: 0, B: 0, A: 0.5}))
+      );
     });
-  })
+  });
 });
 
 /**
  * INTERNAL FUNCTIONS
  */
-function round_all(c){ return {'L' : round(c.L),
-                               'a' : round(c.a),
-                               'b' : round(c.b)};
-                     }
-function round(n){ return Math.round(n*1000)/1000; }
+function round_all(c) {
+  return {L: round(c.L), a: round(c.a), b: round(c.b)};
+}
+function round(n) {
+  return Math.round(n * 1000) / 1000;
+}
 
 // Local Variables:
 // allout-layout: t
